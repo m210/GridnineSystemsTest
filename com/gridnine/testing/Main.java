@@ -1,18 +1,18 @@
 package com.gridnine.testing;
 
+import com.gridnine.testing.controller.FlightFinderController;
+import com.gridnine.testing.exception.FlightNotFoundException;
+import com.gridnine.testing.filter.impl.FlightTimeFilter;
+import com.gridnine.testing.repository.impl.FlightRepositoryImpl;
+import com.gridnine.testing.repository.IFlightRepository;
+import com.gridnine.testing.service.IFlightFinderService;
+import com.gridnine.testing.service.impl.FlightFinderServiceImpl;
+
 import java.time.LocalDateTime;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		/** Task0: Поместите в main() такой проверочный код. */
-		
-		System.out.println(FlightBuilder.createFlights());
-		System.out.println();
-		System.out.println("The next block is working with controller like rest controllers using mvc: ");
-		System.out.println();
-		
 		/** Create Bean of the test repository with FlightBuilder.createFlights() factory */
 		
 		IFlightRepository repository = new FlightRepositoryImpl();
@@ -67,8 +67,7 @@ public class Main {
 		}
 		
 		System.out.println("________________________");
-		System.out.println("Another custom filter");
-		System.out.println("printFlightsFiltered(new FlightTimeFilter(3)) query:");
+		System.out.println("Another custom filter (Flight time not more than 3 hours)");
 		try {
 			controller.printFlightsFiltered(new FlightTimeFilter(3));
 		} catch(FlightNotFoundException e) {
